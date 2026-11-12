@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>최성호 포트폴리오</title>
+<meta name="description" content="최성호 — 클라우드·AI 포트폴리오. CV, 스킬, 프로젝트.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+KR:wght@400;500;600&family=Noto+Serif+KR:wght@600;700&family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&display=swap">
+<style>
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; }
+img { max-width: 100%; }
+/* Layout: one 880px reading column on paper, a sticky mono nav, numbered sections split by hairlines,
+   and white project cards marked with two corner brackets. */
+:root {
+  --bg: #f5f5f1;
+  --surface: #ffffff;
+  --ink: #17191c;
+  --ink-soft: #52585e;
+  --ink-faint: #868b90;
+  --navy: #1f3a5c;
+  --teal: #2f7268;
+  --amber: #b9701f;
+  --line: #dedbd2;
+  --nav-bg: rgba(245, 245, 241, 0.92);
+  --serif: 'Source Serif 4', 'Noto Serif KR', 'Apple SD Gothic Neo', Georgia, serif;
+  --sans: 'IBM Plex Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', system-ui, sans-serif;
+  --mono: 'IBM Plex Mono', 'IBM Plex Sans KR', ui-monospace, Menlo, Consolas, monospace;
+  --maxw: 880px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #13171c; --surface: #1a1f26; --ink: #eceae4; --ink-soft: #b4b9be; --ink-faint: #7f868d;
+    --navy: #b5cdea; --teal: #72c4b6; --amber: #e3a560; --line: #2b323a; --nav-bg: rgba(19, 23, 28, 0.92);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #13171c; --surface: #1a1f26; --ink: #eceae4; --ink-soft: #b4b9be; --ink-faint: #7f868d;
+  --navy: #b5cdea; --teal: #72c4b6; --amber: #e3a560; --line: #2b323a; --nav-bg: rgba(19, 23, 28, 0.92);
+  color-scheme: dark;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.7;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+  -webkit-font-smoothing: antialiased;
+}
+body::before {
+  content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px);
+  z-index: 10; background: var(--bg);
+}
+h1, h2, h3, p, ul, dl, dd { margin: 0; }
+ul { padding: 0; list-style: none; }
+a { color: inherit; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--teal); outline-offset: 3px; }
+
+.wrap {
+  max-width: var(--maxw);
+  margin-inline: auto;
+  padding-left: max(24px, env(safe-area-inset-left, 0px));
+  padding-right: max(24px, env(safe-area-inset-right, 0px));
+}
+
+/* Nav */
+.nav {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 9;
+  background: var(--nav-bg);
+  -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--line);
+}
+.nav-inner { display: flex; align-items: center; justify-content: space-between; gap: 20px; height: 54px; }
+.nav-name {
+  font-family: var(--mono); font-size: 13px; font-weight: 500; letter-spacing: 0.04em;
+  text-decoration: none; white-space: nowrap;
+}
+.nav-links { display: flex; gap: 26px; min-width: 0; overflow-x: auto; scrollbar-width: none; }
+.nav-links::-webkit-scrollbar { display: none; }
+.nav-links a {
+  font-family: var(--mono); font-size: 12.5px; letter-spacing: 0.04em; text-transform: uppercase;
+  color: var(--ink-soft); text-decoration: none; white-space: nowrap;
+}
+.nav-links a:hover { color: var(--teal); }
+
+/* Hero */
+.hero { padding-block: 96px 80px; }
+.eyebrow {
+  font-family: var(--mono); font-size: 12.5px; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--teal); margin-bottom: 26px;
+}
+.thesis {
+  font-family: var(--serif); font-weight: 600; color: var(--navy);
+  font-size: clamp(32px, 6.2vw, 50px); line-height: 1.28; letter-spacing: -0.01em;
+  max-width: 13em; text-wrap: balance;
+}
+.hero-sub { margin-top: 28px; max-width: 35em; font-size: 16.5px; color: var(--ink-soft); }
+.meta-line {
+  margin-top: 30px; display: flex; flex-wrap: wrap; gap: 6px 22px;
+  font-family: var(--mono); font-size: 12.5px; color: var(--ink-faint);
+}
+
+/* Sections */
+section[id] { border-top: 1px solid var(--line); padding-block: 76px 60px; scroll-margin-top: 54px; }
+.section-head { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; margin-bottom: 30px; }
+.section-title { font-family: var(--serif); font-weight: 600; font-size: 26px; line-height: 1.5; color: var(--navy); }
+.section-num { font-family: var(--mono); font-size: 12px; color: var(--ink-faint); }
+
+.about-body { max-width: 38em; display: grid; gap: 16px; color: var(--ink-soft); }
+.about-body b { color: var(--ink); font-weight: 600; }
+
+/* CV */
+.cv-group + .cv-group { margin-top: 34px; }
+.cv-label, .skill-label {
+  font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--ink-faint);
+}
+.cv-label { margin-bottom: 8px; }
+.cv-row {
+  display: grid; grid-template-columns: 190px minmax(0, 1fr); gap: 4px 24px;
+  padding-block: 13px; border-top: 1px solid var(--line);
+}
+.cv-when { font-family: var(--mono); font-size: 12.5px; color: var(--ink-faint); padding-top: 3px; font-variant-numeric: tabular-nums; }
+.cv-what b { font-weight: 600; }
+.cv-what span { color: var(--ink-soft); }
+.cv-note { font-size: 14.5px; color: var(--ink-soft); }
+
+/* Skills */
+.skill-group {
+  display: grid; grid-template-columns: 190px minmax(0, 1fr); gap: 10px 24px;
+  padding-block: 16px; border-top: 1px solid var(--line);
+}
+.skill-label { padding-top: 8px; }
+.skill-rows { display: grid; gap: 10px; min-width: 0; }
+.skill-row { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.skill-desc { font-size: 14.5px; color: var(--ink-soft); margin-left: 4px; }
+.tag {
+  font-family: var(--mono); font-size: 12.5px; line-height: 1.5; color: var(--navy);
+  background: var(--surface); border: 1px solid var(--line); padding: 6px 11px;
+}
+
+/* Projects */
+.project {
+  position: relative; background: var(--surface); border: 1px solid var(--line);
+  padding: 30px 30px 26px;
+}
+.project + .project { margin-top: 26px; }
+.project::before, .project::after {
+  content: ""; position: absolute; width: 14px; height: 14px; border: 2px solid var(--teal);
+}
+.project::before { top: -1px; left: -1px; border-right: 0; border-bottom: 0; }
+.project::after { bottom: -1px; right: -1px; border-left: 0; border-top: 0; }
+.project-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px 20px; flex-wrap: wrap; }
+.project-title { font-family: var(--serif); font-weight: 600; font-size: 21px; line-height: 1.45; min-width: 0; flex: 1 1 16em; }
+.status {
+  flex: none; display: inline-flex; align-items: center; gap: 7px;
+  font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.06em; text-transform: uppercase;
+  padding: 4px 9px; border: 1px solid currentColor; color: var(--teal); margin-top: 4px;
+}
+.status.progress { color: var(--amber); }
+.pulse { width: 6px; height: 6px; border-radius: 50%; background: currentColor; animation: pulse 1.8s ease-in-out infinite; }
+@keyframes pulse { 50% { opacity: 0.25; } }
+.project-timeline { margin-top: 8px; font-family: var(--mono); font-size: 12.5px; color: var(--ink-faint); }
+.project-desc { margin-top: 16px; max-width: 40em; color: var(--ink-soft); }
+.project-role { margin-top: 14px; font-size: 14.5px; color: var(--ink-soft); }
+.project-role b { color: var(--navy); font-weight: 600; }
+.project-tags { margin-top: 18px; display: flex; flex-wrap: wrap; gap: 8px; }
+.project-tags .tag { background: var(--bg); padding: 5px 10px; font-size: 12px; color: var(--ink-soft); }
+.project-links { margin-top: 18px; display: flex; flex-wrap: wrap; gap: 6px 22px; }
+.project-link { font-family: var(--mono); font-size: 13px; color: var(--teal); text-decoration: none; }
+.project-link:hover { text-decoration: underline; text-underline-offset: 4px; }
+
+/* Contact */
+.contact-grid { display: flex; flex-wrap: wrap; gap: 26px 56px; }
+.contact-item .label {
+  font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--ink-faint); margin-bottom: 4px;
+}
+.contact-item .val { display: flex; align-items: center; gap: 10px; font-size: 16.5px; }
+.contact-item .val a { text-decoration: none; border-bottom: 1px solid var(--line); }
+.contact-item .val a:hover { color: var(--teal); border-color: var(--teal); }
+.copy {
+  font-family: var(--mono); font-size: 11px; color: var(--ink-soft); background: transparent;
+  border: 1px solid var(--line); padding: 2px 8px; cursor: pointer;
+}
+.copy:hover { color: var(--teal); border-color: var(--teal); }
+
+footer {
+  border-top: 1px solid var(--line); padding-block: 34px 60px;
+  font-family: var(--mono); font-size: 12px; color: var(--ink-faint);
+}
+
+@media (max-width: 640px) {
+  .wrap { padding-left: max(18px, env(safe-area-inset-left, 0px)); padding-right: max(18px, env(safe-area-inset-right, 0px)); }
+  .nav-inner { gap: 14px; }
+  .nav-links { gap: 16px; }
+  .nav-links a { font-size: 11.5px; letter-spacing: 0.02em; }
+  .hero { padding-block: 64px 56px; }
+  section[id] { padding-block: 56px 44px; }
+  .cv-row, .skill-group { grid-template-columns: minmax(0, 1fr); }
+  .cv-when, .skill-label { padding-top: 0; }
+  .skill-desc { margin-left: 0; flex-basis: 100%; }
+  .project { padding: 24px 20px 22px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .pulse { animation: none; }
+}
+</style>
+</head>
+<body>
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a class="nav-name" href="#top">CHOI SUNGHO</a>
+    <nav class="nav-links" aria-label="섹션">
+      <a href="#about">About</a>
+      <a href="#cv">CV</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top" class="wrap">
+  <div class="hero">
+    <p class="eyebrow">// Undergraduate · Cloud &amp; AI Engineering</p>
+    <h1 class="thesis">클라우드 위에서 AI 서비스를 구성하고, 운영합니다.</h1>
+    <p class="hero-sub">GCP 서버리스 전환부터 AWS 3-Tier 모니터링까지, 서비스가 실제로 동작하는지 지표와 로그로 확인하는 일을 해 왔습니다. 지금은 베스핀글로벌 멀티클라우드 과정을 수강하며 AI 평가 신뢰구간 자동화 산학협력 프로젝트를 진행하고 있습니다.</p>
+    <p class="meta-line"><span>우송대학교</span><span>AI·빅데이터학과</span><span>2028.02 졸업 예정</span></p>
+  </div>
+
+  <section id="about">
+    <div class="section-head"><h2 class="section-title">About</h2><span class="section-num">01</span></div>
+    <div class="about-body">
+      <p>우송대학교 AI·빅데이터학과에 재학 중이며, <b>클라우드 위에서 AI 서비스를 구성하고 운영하는 엔지니어</b>를 목표로 합니다. <b>서버리스 아키텍처 전환</b>과 <b>권한 관리</b>, <b>모니터링 지표·로그 분석</b>처럼 서비스가 실제로 동작하는지 확인하는 일을 함께 다룹니다.</p>
+      <p>육군에서 사격지휘병으로 만기 복무한 뒤 전문하사로 6개월 더 복무했고, 지금은 학과 학생회장을 맡고 있습니다. 문제가 생기면 확인한 사실과 더 봐야 할 부분을 나눠 기록하고 공유합니다.</p>
+    </div>
+  </section>
+
+  <section id="cv">
+    <div class="section-head"><h2 class="section-title">Curriculum Vitae</h2><span class="section-num">02</span></div>
+
+    <div class="cv-group">
+      <h3 class="cv-label">경력 및 활동</h3>
+      <div class="cv-row">
+        <div class="cv-when">2022.03 – 2028.02 (예정)</div>
+        <div class="cv-what"><b>우송대학교</b> <span>AI·빅데이터학과</span><div class="cv-note">교내 활동: AI·빅데이터학과 학생회장 (2026)</div></div>
+      </div>
+      <div class="cv-row">
+        <div class="cv-when">2023.02 – 2025.02</div>
+        <div class="cv-what"><b>대한민국 육군</b> <span>사격지휘병 · 전문하사</span><div class="cv-note">사격지휘병 만기 복무 / 전문하사 6개월 복무</div></div>
+      </div>
+      <div class="cv-row">
+        <div class="cv-when">2019.03 – 2022.02</div>
+        <div class="cv-what"><b>남대전고등학교</b></div>
+      </div>
+    </div>
+
+    <div class="cv-group">
+      <h3 class="cv-label">교육 및 이력</h3>
+      <div class="cv-row"><div class="cv-when">2026.07 – 수강 중</div><div class="cv-what"><b>베스핀글로벌 멀티클라우드 과정</b></div></div>
+      <div class="cv-row"><div class="cv-when">2026.03 – 2026.06</div><div class="cv-what"><b>캡스톤디자인</b></div></div>
+      <div class="cv-row"><div class="cv-when">2025.08 – 2026.02</div><div class="cv-what"><b>비트교육 고급과정</b></div></div>
+      <div class="cv-row"><div class="cv-when">2025.03 – 2025.06</div><div class="cv-what"><b>비트교육 단기과정</b></div></div>
+    </div>
+
+    <div class="cv-group">
+      <h3 class="cv-label">자격증</h3>
+      <div class="cv-row"><div class="cv-when">2026.10.08</div><div class="cv-what"><b>Microsoft Azure Fundamentals</b></div></div>
+      <div class="cv-row"><div class="cv-when">2026.05.24</div><div class="cv-what"><b>PCEP™</b> <span>Certified Entry-Level Python Programmer</span></div></div>
+      <div class="cv-row"><div class="cv-when">2025.03.11</div><div class="cv-what"><b>AWS Certified AI Practitioner</b></div></div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="section-head"><h2 class="section-title">Skills</h2><span class="section-num">03</span></div>
+
+    <div class="skill-group">
+      <h3 class="skill-label">개발 언어</h3>
+      <div class="skill-rows">
+        <div class="skill-row"><span class="tag">Python</span><span class="skill-desc">FastAPI 서버, 자료 분석·보고서 자동화, 평가 API 테스트·신뢰구간 검증</span></div>
+        <div class="skill-row"><span class="tag">C</span><span class="tag">C++</span><span class="tag">C#</span><span class="skill-desc">프로그래밍 사용 경험</span></div>
+      </div>
+    </div>
+    <div class="skill-group">
+      <h3 class="skill-label">클라우드</h3>
+      <div class="skill-rows">
+        <div class="skill-row"><span class="tag">GCP</span><span class="skill-desc">Cloud Run, Eventarc, Firestore, Cloud Storage, IAM</span></div>
+        <div class="skill-row"><span class="tag">AWS</span><span class="skill-desc">EC2, ALB, RDS, CloudWatch</span></div>
+        <div class="skill-row"><span class="tag">Azure</span><span class="tag">NCP</span><span class="skill-desc">인프라 구성 실습 경험</span></div>
+      </div>
+    </div>
+    <div class="skill-group">
+      <h3 class="skill-label">백엔드·DB</h3>
+      <div class="skill-rows">
+        <div class="skill-row"><span class="tag">FastAPI</span><span class="skill-desc">하루매듭 AI 서버, AWS 실습 배포(systemd 서비스 등록)</span></div>
+        <div class="skill-row"><span class="tag">MySQL</span><span class="skill-desc">RDS MySQL 연결, 세션 저장 확인</span></div>
+        <div class="skill-row"><span class="tag">Firebase</span><span class="skill-desc">Firestore 실시간 동기화·데이터 저장</span></div>
+      </div>
+    </div>
+    <div class="skill-group">
+      <h3 class="skill-label">AI</h3>
+      <div class="skill-rows">
+        <div class="skill-row"><span class="tag">Gemini 멀티모달 분석</span><span class="skill-desc">사진·영상·통화 데이터 분석</span></div>
+        <div class="skill-row"><span class="tag">RAG 파이프라인</span><span class="skill-desc">기억 회상 엔진·환각 방지 가드레일, 문서 Q&amp;A 검색</span></div>
+      </div>
+    </div>
+    <div class="skill-group">
+      <h3 class="skill-label">협업·도구</h3>
+      <div class="skill-rows">
+        <div class="skill-row"><span class="tag">Git</span><span class="tag">GitHub</span><span class="skill-desc">저장소 관리, 팀 프로젝트 협업</span></div>
+        <div class="skill-row"><span class="tag">Notion</span><span class="tag">Slack</span><span class="tag">Linear</span><span class="skill-desc">문서화, 팀 커뮤니케이션, 일정 관리</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="section-head"><h2 class="section-title">Projects</h2><span class="section-num">04</span></div>
+
+    <article class="project">
+      <div class="project-top">
+        <h3 class="project-title">infer-ci 기반 AI 평가 신뢰구간 자동화</h3>
+        <span class="status progress"><i class="pulse"></i>In Progress</span>
+      </div>
+      <p class="project-timeline">2026.10 – 진행 중 · 비인텔리전스글로벌 산학협력</p>
+      <p class="project-desc">AI 모델의 Accuracy·F1-score 같은 성능 수치를 신뢰구간과 함께 제시할 수 있도록, 기존 infer-ci를 기반으로 평가 지표의 신뢰구간 산출을 자동화하는 평가 시제품을 만드는 프로젝트입니다.</p>
+      <p class="project-role">Role: <b>평가 API 테스트·신뢰구간 검증</b> — Python으로 분류·회귀 평가 API 테스트를 작성하고 신뢰구간 산출을 검증하고 있습니다.</p>
+      <ul class="project-tags"><li class="tag">Python</li><li class="tag">infer-ci</li><li class="tag">신뢰구간</li><li class="tag">Bootstrap</li><li class="tag">평가 지표</li></ul>
+    </article>
+
+    <article class="project">
+      <div class="project-top">
+        <h3 class="project-title">AWS 3-Tier 서비스 모니터링·운영</h3>
+        <span class="status">Completed</span>
+      </div>
+      <p class="project-timeline">2026.10 – 2026.11 · 베스핀글로벌 멀티클라우드 과정 팀 프로젝트</p>
+      <p class="project-desc">접수 시스템을 외부 ALB → Apache WEB → 내부 ALB → FastAPI WAS → RDS MySQL로 이어지는 3-Tier 구조로 구성했습니다. 29개 위젯의 CloudWatch 대시보드와 운영 경보 9개를 만들었고, 120명 부하에서 16.4 RPS·p95 35ms로 팀 합격 기준을 충족한 것과 2,000명에서 포화되는 구간을 지표로 확인했습니다.</p>
+      <p class="project-role">Role: <b>모니터링·운영 담당</b> — 대시보드·경보 구성, 알림 연결 검증, 부하·장애 시험의 지표·로그 분석.</p>
+      <ul class="project-tags"><li class="tag">AWS</li><li class="tag">CloudWatch</li><li class="tag">ALB</li><li class="tag">RDS MySQL</li><li class="tag">SNS</li><li class="tag">Apache</li><li class="tag">FastAPI</li></ul>
+    </article>
+
+    <article class="project">
+      <div class="project-top">
+        <h3 class="project-title">Deep Doc Extract 자동화</h3>
+        <span class="status">Completed</span>
+      </div>
+      <p class="project-timeline">2026.03 – 2026.06 · 캡스톤디자인 팀 프로젝트 (Team DocuForge)</p>
+      <p class="project-desc">PDF 기술 문서를 Markdown으로 구조화하고, 로컬 LLM으로 학습용 Q&amp;A를 생성·증강한 뒤 RAG 검색으로 확인하는 4단계 파이프라인입니다. 적합한 근거가 없으면 답변을 거절하도록 구성했습니다.</p>
+      <p class="project-role">Role: <b>이미지 분류·질문 데이터 증강</b> — HP 매뉴얼 이미지 분류와 질문 데이터 증강을 맡았습니다.</p>
+      <ul class="project-tags"><li class="tag">Python</li><li class="tag">pdfplumber</li><li class="tag">Camelot</li><li class="tag">Ollama</li><li class="tag">ChromaDB</li><li class="tag">Streamlit</li></ul>
+      <div class="project-links">
+        <a class="project-link" href="https://github.com/choisung-ho/deep-doc-extractor" target="_blank" rel="noopener">→ View code</a>
+        <a class="project-link" href="https://github.com/choisung-ho/deep-doc-extractor/blob/main/docs/PUBLIC_VALIDATION.md" target="_blank" rel="noopener">→ 검증 기록</a>
+      </div>
+    </article>
+
+    <article class="project">
+      <div class="project-top">
+        <h3 class="project-title">우송대학교 사무직원 교육역량 분석·보고서 자동화</h3>
+        <span class="status">Completed</span>
+      </div>
+      <p class="project-timeline">2026.03 – 2026.05 · 우송대학교</p>
+      <p class="project-desc">사무직원의 활동·교육 자료(HWP·PDF·Excel·DOCX)를 통합 분석해 연도·부서별 현황을 대시보드로 시각화하고, LLM 기반 종합보고서를 자동 생성하는 시스템입니다. 개인 분석 레코드 350건, 총 1,136페이지, 54개 부서의 자료를 분석했고, 수치 계산과 생성형 AI의 역할을 분리했습니다.</p>
+      <p class="project-role">Role: <b>End-to-End</b> — 데이터 수집·전처리와 분류 기준 설계, 백엔드·대시보드 구현, LLM 연동, 보고서 자동화.</p>
+      <ul class="project-tags"><li class="tag">Python</li><li class="tag">Flask</li><li class="tag">SQLite</li><li class="tag">Chart.js</li><li class="tag">Gemini</li><li class="tag">pdfplumber</li></ul>
+    </article>
+
+    <article class="project">
+      <div class="project-top">
+        <h3 class="project-title">하루매듭 — AI 기반 초기 치매 환자 케어 플랫폼</h3>
+        <span class="status">Completed</span>
+      </div>
+      <p class="project-timeline">2025.12 – 2026.02 · 비트교육 고급과정 팀 프로젝트</p>
+      <p class="project-desc">치매 환자의 기억 회상을 돕고 보이스피싱·스미싱·실종 위험을 탐지하는 서비스입니다. 고용량 사진·영상과 음성 통화 데이터를 비동기로 처리하기 위해 단일 서버 구조를 Cloud Run·Eventarc·Firestore 기반 서버리스 아키텍처로 전환했고, Gemini 멀티모달 분석과 환각 방지 가드레일을 넣은 RAG 파이프라인을 구현했습니다.</p>
+      <p class="project-role">Role: <b>PM · AI System / Backend Lead</b> — 요구사항·일정 관리, AI 파이프라인과 백엔드 아키텍처 설계·구현, 팀 IAM 권한 재설계.</p>
+      <ul class="project-tags"><li class="tag">Python</li><li class="tag">FastAPI</li><li class="tag">Gemini API</li><li class="tag">RAG</li><li class="tag">Cloud Run</li><li class="tag">Eventarc</li><li class="tag">Firestore</li><li class="tag">IAM</li></ul>
+    </article>
+  </section>
+
+  <section id="contact">
+    <div class="section-head"><h2 class="section-title">Contact</h2><span class="section-num">05</span></div>
+    <div class="contact-grid">
+      <div class="contact-item">
+        <p class="label">Email</p>
+        <p class="val"><span id="c-email">sungho030311@naver.com</span><button class="copy" type="button" id="copy-email" data-target="c-email">복사</button></p>
+      </div>
+      <div class="contact-item">
+        <p class="label">Phone</p>
+        <p class="val"><span id="c-phone">010-3914-2693</span><button class="copy" type="button" id="copy-phone" data-target="c-phone">복사</button></p>
+      </div>
+      <div class="contact-item">
+        <p class="label">GitHub</p>
+        <p class="val"><a href="https://github.com/choisung-ho" target="_blank" rel="noopener">choisung-ho</a></p>
+      </div>
+    </div>
+  </section>
+
+  <footer>최성호 · Cloud &amp; AI Portfolio · Updated November 2026</footer>
+</main>
+
+<script>
+document.querySelectorAll('.copy').forEach(function (btn) {
+  btn.addEventListener('click', async function () {
+    var el = document.getElementById(btn.dataset.target);
+    var label = '복사됨';
+    try {
+      await navigator.clipboard.writeText(el.textContent);
+    } catch (e) {
+      var range = document.createRange();
+      range.selectNodeContents(el);
+      var sel = window.getSelection();
+      sel.removeAllRanges();
+      sel.addRange(range);
+      label = '선택됨';
+    }
+    btn.textContent = label;
+    setTimeout(function () { btn.textContent = '복사'; }, 1600);
+  });
+});
+</script>
+</body>
+</html>
