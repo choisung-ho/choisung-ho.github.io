@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>우송대학교 사무직원 교육역량 분석·보고서 자동화 · 최성호 포트폴리오</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+KR:wght@400;500;600&family=Noto+Serif+KR:wght@600;700&family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&display=swap">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="nav" aria-label="포트폴리오">
+  <div class="wrap nav-inner">
+    <a class="nav-name" href="../../">CHOI SUNGHO</a>
+    <a class="detail-back" href="../../#project-education-analytics">← 프로젝트 목록</a>
+  </div>
+</nav>
+<main class="wrap detail">
+  <article>
+    <header class="detail-header">
+      <h1>우송대학교 사무직원 교육역량 분석·보고서 자동화</h1>
+      <p class="detail-timeline">2026.03 – 2026.05 · 우송대학교</p>
+    </header>
+    <figure class="detail-cover"><img src="../../assets/projects/education-analytics-1.svg" alt="우송대학교 사무직원 교육역량 분석·보고서 자동화 표지" fetchpriority="high"></figure>
+    <div class="detail-content">
+<h2>프로젝트 간단 설명</h2>
+<p>우송대학교 사무직원의 활동·교육 자료(HWP·PDF·Excel·DOCX)를 통합 분석해 연도·부서별 현황을 대시보드로 시각화하고, LLM 기반 종합보고서(Word·PowerPoint·HTML·CSV)를 자동 생성하는 시스템입니다.</p>
+<h2>주 시도들</h2>
+<ol>
+<li>파일 형식별 추출 결과를 공통 텍스트·메타데이터 구조로 표준화했습니다.</li>
+<li>한글 NFC 정규화, 연도·부서·담당자 보정, 중복 방지 규칙으로 데이터 품질을 관리했습니다.</li>
+<li>가중치 분류 엔진과 Flask·Chart.js 대시보드를 구현하고 Gemini는 검증된 수치의 서술 보강에만 사용했습니다.</li>
+</ol>
+<h2>기술 및 리소스</h2>
+<ul>
+<li>Python, Flask, SQLite, Chart.js, Gemini</li>
+<li>pdfplumber, LibreOffice, hwp5txt</li>
+<li>DOCX, PPTX, HTML, CSV, TXT 자동 생성</li>
+</ul>
+<h2>담당 역할</h2>
+<ul>
+<li>데이터 수집·전처리 및 분류 기준 설계</li>
+<li>백엔드·대시보드 구현, LLM 연동</li>
+<li>보고서 자동화 및 결과 정합성 검증</li>
+</ul>
+<h2>성과</h2>
+<ol>
+<li>
+<p>개인 분석 레코드 350건, 총 1,136페이지, 54개 고유 부서의 자료를 분석했습니다.</p>
+<figure class="detail-figure"><a href="../../assets/projects/education-analytics-2.png" target="_blank" rel="noopener" aria-label="역량 카테고리별 가중치와 연도별 점유율 차트 원본 이미지 보기 (새 탭)"><img src="../../assets/projects/education-analytics-2.png" alt="역량 카테고리별 가중치와 연도별 점유율 차트" width="2880" height="968" loading="lazy" decoding="async"></a><figcaption>역량 카테고리별 가중치와 연도별 점유율 차트</figcaption></figure>
+</li>
+<li>
+<p>개인 문서 452건, 계획 문서 12건, 결과총괄 문서 18건을 통합 관리했습니다.</p>
+<figure class="detail-figure"><a href="../../assets/projects/education-analytics-3.png" target="_blank" rel="noopener" aria-label="연도별 계획·결과 문서 대시보드 원본 이미지 보기 (새 탭)"><img src="../../assets/projects/education-analytics-3.png" alt="연도별 계획·결과 문서 대시보드" width="2880" height="584" loading="lazy" decoding="async"></a><figcaption>연도별 계획·결과 문서 대시보드</figcaption></figure>
+</li>
+<li>
+<p>정량 계산과 생성형 AI의 책임을 분리해 보고서 수치의 신뢰성을 확보했습니다.</p>
+<figure class="detail-figure"><a href="../../assets/projects/education-analytics-4.png" target="_blank" rel="noopener" aria-label="3개년 직무 교육 성과 대시보드의 분류 기준과 가중 방식 원본 이미지 보기 (새 탭)"><img src="../../assets/projects/education-analytics-4.png" alt="3개년 직무 교육 성과 대시보드의 분류 기준과 가중 방식" width="2880" height="1800" loading="lazy" decoding="async"></a><figcaption>3개년 직무 교육 성과 대시보드의 분류 기준과 가중 방식</figcaption></figure>
+</li>
+</ol>
+<h2>시스템 구조와 기술적 의사결정</h2>
+<ul>
+<li>PDF·HWP·DOCX·Excel별 추출기를 공통 텍스트·메타데이터 구조로 연결해 이후 분류 로직이 원본 형식에 의존하지 않도록 했습니다.</li>
+<li>공식 교육이수현황은 참여율과 교육시간의 근거로, 개인보고서는 업무 적용 사례와 역량 분포의 근거로 분리했습니다.</li>
+<li>구절 3점, 전문용어 2점, 일반 키워드 1점의 가중치와 제외 패턴, 페이지 수 정규화를 적용했습니다.</li>
+<li>Gemini는 통계 계산이 아닌 검증된 데이터의 보고서 문장 생성에만 사용하고, 실패 시 Ollama 또는 기본 문장으로 폴백합니다.</li>
+</ul>
+<h2>검증과 개선 방향</h2>
+<ul>
+<li>NFC 정규화, 연도·부서·담당자 보정, 중복 방지, 분류 버전 관리와 재채점 기능으로 재현성을 확보했습니다.</li>
+<li>향후 정답 라벨 기반 분류 정확도 평가, 관리자 수정 이력, 조직별 권한 관리와 운영 배포 자동화를 보강할 수 있습니다.</li>
+</ul>
+    </div>
+  </article>
+  <footer>최성호 · Cloud &amp; AI Portfolio</footer>
+</main>
+</body>
+</html>

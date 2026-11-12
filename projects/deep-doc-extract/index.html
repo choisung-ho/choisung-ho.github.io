@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Deep Doc Extract 자동화 · 최성호 포트폴리오</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+KR:wght@400;500;600&family=Noto+Serif+KR:wght@600;700&family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&display=swap">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="nav" aria-label="포트폴리오">
+  <div class="wrap nav-inner">
+    <a class="nav-name" href="../../">CHOI SUNGHO</a>
+    <a class="detail-back" href="../../#project-deep-doc-extract">← 프로젝트 목록</a>
+  </div>
+</nav>
+<main class="wrap detail">
+  <article>
+    <header class="detail-header">
+      <h1>Deep Doc Extract 자동화</h1>
+      <p class="detail-timeline">2026.03 – 2026.06 · 캡스톤디자인 팀 프로젝트 (Team DocuForge)</p>
+    </header>
+    <figure class="detail-cover"><img src="../../assets/projects/deep-doc-extract-1.svg" alt="Deep Doc Extract 자동화 표지" fetchpriority="high"></figure>
+    <div class="detail-content">
+<h2>프로젝트 소개</h2>
+<p>캡스톤디자인 팀 프로젝트(HP 매뉴얼 대상)의 공개용 소스로, PDF 기술 문서를 Markdown으로 구조화하고 로컬 LLM으로 학습용 Q&amp;A를 생성·증강한 뒤 RAG 검색으로 확인하는 4단계 파이프라인입니다.</p>
+<h2>핵심 구현</h2>
+<ol>
+<li>
+<p>pdfplumber·Camelot로 PDF의 텍스트·이미지·표를 추출해 Markdown으로 정리합니다.</p>
+<figure class="detail-figure"><a href="../../assets/projects/deep-doc-extract-2.png" target="_blank" rel="noopener" aria-label="1단계 · PDF에서 추출한 이미지와 표 원본 이미지 보기 (새 탭)"><img src="../../assets/projects/deep-doc-extract-2.png" alt="1단계 · PDF에서 추출한 이미지와 표" width="1750" height="756" loading="lazy" decoding="async"></a><figcaption>1단계 · PDF에서 추출한 이미지와 표</figcaption></figure>
+</li>
+<li>
+<p>문서를 청킹하고 Ollama로 출처를 포함한 Q&amp;A JSONL을 생성합니다.</p>
+<figure class="detail-figure"><a href="../../assets/projects/deep-doc-extract-3.png" target="_blank" rel="noopener" aria-label="2단계 · 출처가 포함된 Q&amp;A JSONL 예시 원본 이미지 보기 (새 탭)"><img src="../../assets/projects/deep-doc-extract-3.png" alt="2단계 · 출처가 포함된 Q&amp;A JSONL 예시" width="1110" height="2168" loading="lazy" decoding="async"></a><figcaption>2단계 · 출처가 포함된 Q&amp;A JSONL 예시</figcaption></figure>
+</li>
+<li>
+<p>질문 재표현 후 길이·언어·약한 답변·원문 관련성·중복 필터를 적용합니다.</p>
+<figure class="detail-figure"><a href="../../assets/projects/deep-doc-extract-4.png" target="_blank" rel="noopener" aria-label="3단계 · 질문 증강 후 적용한 품질 필터 원본 이미지 보기 (새 탭)"><img src="../../assets/projects/deep-doc-extract-4.png" alt="3단계 · 질문 증강 후 적용한 품질 필터" width="1692" height="686" loading="lazy" decoding="async"></a><figcaption>3단계 · 질문 증강 후 적용한 품질 필터</figcaption></figure>
+</li>
+<li>
+<p>문서 청크와 Q&amp;A를 ChromaDB에 인덱싱하고 임베딩 검색·Streamlit 답변 화면으로 연결합니다.</p>
+<figure class="detail-figure"><a href="../../assets/projects/deep-doc-extract-5.png" target="_blank" rel="noopener" aria-label="4단계 · Streamlit의 근거 기반 Q&amp;A 화면 원본 이미지 보기 (새 탭)"><img src="../../assets/projects/deep-doc-extract-5.png" alt="4단계 · Streamlit의 근거 기반 Q&amp;A 화면" width="1146" height="660" loading="lazy" decoding="async"></a><figcaption>4단계 · Streamlit의 근거 기반 Q&amp;A 화면</figcaption></figure>
+</li>
+</ol>
+<h2>담당 역할</h2>
+<p>HP 매뉴얼 이미지 분류와 질문 데이터 증강을 맡았습니다.</p>
+<h2>기술</h2>
+<p>Python · pdfplumber · Camelot · Ollama · ChromaDB · 임베딩 · Streamlit · JSONL</p>
+<h2>설계에서 고려한 점</h2>
+<p>검색 점수 기준을 적용하고 높은 점수의 Q&amp;A 일치를 우선할 수 있도록 구성했습니다. 적합한 근거가 없으면 답변 거절 경로로 연결합니다. 단계별 설정과 실행을 분리해 생성·증강·검색을 각각 점검할 수 있습니다.</p>
+<h2>검증 결과와 한계</h2>
+<p>예제 PDF 1페이지의 텍스트 요소 9개 추출, Stage 3 오프라인 검사 6개 그룹, Stage 4 오프라인 검사 6개 그룹 통과가 있습니다. 실제 Ollama 생성·ChromaDB 인덱싱·브라우저 흐름·검색 품질 평가는 별도입니다. 스캔 PDF OCR은 현재 설정에서 비활성화되어 있습니다.</p>
+<h2>코드 근거</h2>
+<ul>
+<li><a href="https://github.com/choisung-ho/deep-doc-extractor">저장소</a></li>
+<li><a href="https://github.com/choisung-ho/deep-doc-extractor/blob/main/stage2/quality_filters.py">Q&amp;A 품질 필터</a></li>
+<li><a href="https://github.com/choisung-ho/deep-doc-extractor/blob/main/stage4/rag_retriever.py">점수 기반 RAG 검색</a></li>
+<li><a href="https://github.com/choisung-ho/deep-doc-extractor/blob/main/docs/PUBLIC_VALIDATION.md">검증 기록</a></li>
+</ul>
+    </div>
+  </article>
+  <footer>최성호 · Cloud &amp; AI Portfolio</footer>
+</main>
+</body>
+</html>
